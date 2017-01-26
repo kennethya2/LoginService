@@ -2,6 +2,7 @@ package com.kennethexercise.login.login;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.facebook.FacebookSdk;
@@ -12,7 +13,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.kennethexercise.login.MainActivity;
 import com.kennethexercise.login.util.prefs.LoginDataUtil;
 
 
@@ -24,15 +24,15 @@ public class LoginController {
 
     private String TAG = "LoginController";
 
-    private MainActivity mContext;
+    private AppCompatActivity mContext;
     private GoogleApiClient mGoogleApiClient;
 
 
-    public static LoginController getInstance(MainActivity context){
+    public static LoginController getInstance(AppCompatActivity context){
         return new LoginController(context);
     }
 
-    private LoginController(MainActivity context){
+    private LoginController(AppCompatActivity context){
         this.mContext=context;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -55,18 +55,18 @@ public class LoginController {
 
         switch(loginPlatform){
             case LoginDataUtil.Login_Platform_FB:
-                    Intent intent = new Intent();
+                Intent intent = new Intent();
 //                    intent.setClass(mContext, LoginSampleFBActivity.class);
-                    intent.setClass(mContext, LoginFBActivity.class);
-                    mContext.startActivity(intent);
-                    Log.d(TAG,"loginFB");
+                intent.setClass(mContext, LoginFBActivity.class);
+                mContext.startActivity(intent);
+                Log.d(TAG,"loginFB");
                 break;
             case LoginDataUtil.Login_Platform_Google:
-                    Intent intent2 = new Intent();
+                Intent intent2 = new Intent();
 //                    intent2.setClass(mContext, LoginSampleGoogleActivity.class);
-                    intent2.setClass(mContext, LoginGoogleActivity.class);
-                    mContext.startActivity(intent2);
-                    Log.d(TAG,"loginGoogle");
+                intent2.setClass(mContext, LoginGoogleActivity.class);
+                mContext.startActivity(intent2);
+                Log.d(TAG,"loginGoogle");
                 break;
         }
 

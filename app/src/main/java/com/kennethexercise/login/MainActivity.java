@@ -107,23 +107,12 @@ public class MainActivity extends AppCompatActivity {
 
             switch(id){
                 case R.id.fbLoginBTN:
-//                    Intent intent = new Intent();
-//                    intent.setClass(MainActivity.this, LoginSampleFBActivity.class);
-//                    startActivity(intent);
-
                     mLoginController.doLogin(LoginDataUtil.Login_Platform_FB);
                     break;
-
                 case R.id.googleLoginBTN:
-//                    Intent intent2 = new Intent();
-//                    intent2.setClass(MainActivity.this, LoginSampleGoogleActivity.class);
-//                    startActivity(intent2);
-
                     mLoginController.doLogin(LoginDataUtil.Login_Platform_Google);
                     break;
-
                 case R.id.logoutBTN:
-
                     mLoginController.doLoout();
                     resetNotLoginUI();
                     break;

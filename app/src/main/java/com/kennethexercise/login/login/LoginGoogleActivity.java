@@ -1,5 +1,6 @@
 package com.kennethexercise.login.login;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -53,14 +55,15 @@ public class LoginGoogleActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         findViewById(R.id.sign_out_button).setOnClickListener(this);
         findViewById(R.id.disconnect_button).setOnClickListener(this);
-
+//        String web_client_id = getString(R.string.web_client_id);
+//        Log.d(TAG,"web_client_id:"+web_client_id);
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail() // Specifies that email info is requested by your application
                 /* Specifies that an ID token for authenticated users is requested. Requesting an ID token requires that the server client ID be specified. */
-                //.requestIdToken(serverClientId)  //serverClientId:The client ID of the server that will verify the integrity of the token.
+//                .requestIdToken(web_client_id)  //serverClientId:The client ID of the server that will verify the integrity of the token.
                 .build();
         // [END configure_signin]
 
@@ -82,7 +85,6 @@ public class LoginGoogleActivity extends AppCompatActivity implements
         // Scopes.PLUS_LOGIN scope to the GoogleSignInOptions to see the
         // difference.
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
         signInButton.setScopes(gso.getScopeArray());
         // [END customize_button]
 
@@ -119,7 +121,12 @@ public class LoginGoogleActivity extends AppCompatActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.d(TAG,"resultCode:"+resultCode);
+        if(resultCode == Activity.RESULT_CANCELED){
+            Toast.makeText(mContext,"取消登入",Toast.LENGTH_SHORT).show();
+            leaveActivity();
+            return;
+        }
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
@@ -131,8 +138,12 @@ public class LoginGoogleActivity extends AppCompatActivity implements
     // [START handleSignInResult]
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
-        Log.d(TAG, "handleSignIn getStatus:" + result.getStatus());
+        String status = result.getStatus().toString();
+        Log.d(TAG, "handleSignIn getStatus:" + status);
+        int statusCode = result.getStatus().getStatusCode();
+        Log.d(TAG, "statusCode:" + statusCode);
         Log.d(TAG, "result toString:" + result.toString());
+        Log.d(TAG, "-----");
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -187,8 +198,22 @@ public class LoginGoogleActivity extends AppCompatActivity implements
             leaveActivity();
 //            updateUI(true);
         } else {
+
+            // force signOut
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                        }
+                    });
             // Signed out, show unauthenticated UI.
             updateUI(false);
+            if(statusCode == CommonStatusCodes.SIGN_IN_REQUIRED){
+                // do nothing
+            } else{
+                Toast.makeText(mContext, "登入失敗",Toast.LENGTH_SHORT).show();
+                leaveActivity();
+            }
         }
     }
     // [END handleSignInResult]
