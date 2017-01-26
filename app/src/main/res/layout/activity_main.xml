@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/notLoginRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/fbLoginBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fb_login"
+            />
+        <Button
+            android:id="@+id/googleLoginBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fbLoginBTN"
+            android:text="google_login"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/loginRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notLoginRL"
+        >
+        <TextView
+            android:id="@+id/platformTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/platformTV"
+            />
+        <TextView
+            android:id="@+id/idTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameTV"
+            />
+        <ImageView
+            android:id="@+id/profileIV"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/idTV"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:id="@+id/logoutBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profileIV"
+            android:text="logout"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>
