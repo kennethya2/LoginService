@@ -2,6 +2,7 @@
     <string name="app_name">LoginService</string>
 
     <string name="APP_ID">your_app_id</string><!-- fb login used -->
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">your_account_kit_client_token</string>
 
 
     <!--<string name="title_text">Google Sign-In\nQuickstart</string>-->
