@@ -82,21 +82,21 @@ public synchronized void doLogin(String loginPlatform){
 ----
 LoginFBActivity
 
-<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginFBActivity.jpg"  width="216" height="384"">
-<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginFBActivity-done.png"  width="216" height="384"">
+<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginFBActivity.jpg"  width="216" height="384">
+<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginFBActivity-done.png"  width="216" height="384">
 
 Facebook Login Success
 
-<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginFBActivity-success.png"  width="216" height="384"">
+<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginFBActivity-success.png"  width="216" height="384">
 
 
 ### Google Login
 ----
 LoginGoogleActivity
 
-<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginGoogleActivity.png"  width="216" height="384"">
+<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginGoogleActivity.png"  width="216" height="384">
 
 Google Login Success
 
-<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginGoogleActivity-success.png"  width="216" height="384"">
+<img src="https://raw.githubusercontent.com/kennethya2/LoginService/master/images/login-LoginGoogleActivity-success.png"  width="216" height="384">
 
